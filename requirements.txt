@@ -1,0 +1,8 @@
+streamlit==0.49.0
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+requests
+bs4
