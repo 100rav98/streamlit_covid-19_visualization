@@ -15,7 +15,7 @@ st.markdown("This application is a COVID-19 dashboard that displays some insight
 
 @st.cache(allow_output_mutation=True,persist=True)
 def load_data():
-    data= pd.read_csv(data_url)
+    data= pd.read_csv(data_url,sep=",")
     data.dropna()
     #data['Date']=pd.to_datetime(data['Date'])
     data.drop(data[data['State/UnionTerritory'].str.startswith('Cases')].index,inplace=True)
