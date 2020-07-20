@@ -7,7 +7,7 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-data_url="https://drive.google.com/file/d/1-J4mlIWKNsTPuMivUL8ZT0ThLYgBOnIf/view?usp=sharing"
+data_url="https://drive.google.com/file/d/10-kCx8F1lKGm8gfliWvim700cEn0re14/view?usp=sharing"
 st.title("COVID-19 Analytics Dashboard")
 st.sidebar.title("User Input Board")
 st.markdown("This application is a COVID-19 dashboard that displays some insights from COVID-19 pandemic")
