@@ -7,7 +7,7 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-data_url=("C:/Users/HP/covid_19_india.csv")
+data_url=("https://www.kaggle.com/sudalairajkumar/covid19-in-india?select=covid_19_india.csv")
 
 st.title("COVID-19 Analytics Dashboard")
 st.sidebar.title("User Input Board")
