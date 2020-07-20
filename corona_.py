@@ -17,14 +17,14 @@ def load_data():
     data= pd.read_csv("https://www.kaggle.com/sudalairajkumar/covid19-in-india?select=covid_19_india.csv",sep="," , engine='python' , error_bad_lines=False)
     data=data.dropna()
     #data['Date']=pd.to_datetime(data['Date'])
-    #data=data.drop(data[data['State/UnionTerritory'].str.startswith('Cases')].index)
-    #data=data.drop(data[data['State/UnionTerritory'].str.startswith('Daman')].index)
-    chng=list(data[data['State/UnionTerritory']=='Dadar Nagar Haveli'].index)
-    cnj=list(data[data['State/UnionTerritory']=='Telengana'].index)
+    data=data.drop(data[data['States'].str.startswith('Cases')].index)
+    data=data.drop(data[data['States'].str.startswith('Daman')].index)
+    chng=list(data[data['States']=='Dadar Nagar Haveli'].index)
+    cnj=list(data[data['States']=='Telengana'].index)
     for i in cnj:
-        data['State/UnionTerritory'].loc[i]='Telangana'
+        data['States'].loc[i]='Telangana'
     for i in chng:
-        data['State/UnionTerritory'].loc[i]='Dadra and Nagar Haveli and Daman and Diu'
+        data['States'].loc[i]='Dadra and Nagar Haveli and Daman and Diu'
     data=data.rename(columns={'State/UnionTerritory':'States'})
     data['Active_Cases']= data['Confirmed'] - data['Cured']
     data['Death_to_Case_Ratio'] = np.round(data['Deaths']/data['Confirmed'],3)
