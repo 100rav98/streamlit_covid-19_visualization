@@ -17,7 +17,7 @@ def load_data():
     data= pd.read_csv("https://www.kaggle.com/sudalairajkumar/covid19-in-india?select=covid_19_india.csv",sep="," , engine='python' , error_bad_lines=False)
     data=data.dropna()
     #data['Date']=pd.to_datetime(data['Date'])
-    data=data.drop(data[data['State/UnionTerritory'].str.startswith('Cases')].index)
+    #data=data.drop(data[data['State/UnionTerritory'].str.startswith('Cases')].index)
     data=data.drop(data[data['State/UnionTerritory'].str.startswith('Daman')].index)
     chng=list(data[data['State/UnionTerritory']=='Dadar Nagar Haveli'].index)
     cnj=list(data[data['State/UnionTerritory']=='Telengana'].index)
