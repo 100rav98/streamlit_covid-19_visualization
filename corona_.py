@@ -7,24 +7,24 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-
+data_url="https://drive.google.com/file/d/1-J4mlIWKNsTPuMivUL8ZT0ThLYgBOnIf/view?usp=sharing"
 st.title("COVID-19 Analytics Dashboard")
 st.sidebar.title("User Input Board")
 st.markdown("This application is a COVID-19 dashboard that displays some insights from COVID-19 pandemic")
 
 #@st.cache(allow_output_mutation=True,persist=True)
 def load_data():
-    data= pd.read_csv("https://www.kaggle.com/sudalairajkumar/covid19-in-india?select=covid_19_india.csv",sep="," , engine='python' , error_bad_lines=False)
+    data= pd.read_csv(data_url,sep="," , engine='python')
     data=data.dropna()
     #data['Date']=pd.to_datetime(data['Date'])
-    data=data.drop(data[data['States'].str.startswith('Cases')].index)
-    data=data.drop(data[data['States'].str.startswith('Daman')].index)
-    chng=list(data[data['States']=='Dadar Nagar Haveli'].index)
-    cnj=list(data[data['States']=='Telengana'].index)
+    data=data.drop(data[data['State/UnionTerritory'].str.startswith('Cases')].index)
+    data=data.drop(data[data['State/UnionTerritory'].str.startswith('Daman')].index)
+    chng=list(data[data['State/UnionTerritory']=='Dadar Nagar Haveli'].index)
+    cnj=list(data[data['State/UnionTerritory']=='Telengana'].index)
     for i in cnj:
-        data['States'].loc[i]='Telangana'
+        data['State/UnionTerritory'].loc[i]='Telangana'
     for i in chng:
-        data['States'].loc[i]='Dadra and Nagar Haveli and Daman and Diu'
+        data['State/UnionTerritory'].loc[i]='Dadra and Nagar Haveli and Daman and Diu'
     data=data.rename(columns={'State/UnionTerritory':'States'})
     data['Active_Cases']= data['Confirmed'] - data['Cured']
     data['Death_to_Case_Ratio'] = np.round(data['Deaths']/data['Confirmed'],3)
