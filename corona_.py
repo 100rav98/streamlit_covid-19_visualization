@@ -12,7 +12,7 @@ st.title("COVID-19 Analytics Dashboard")
 st.sidebar.title("User Input Board")
 st.markdown("This application is a COVID-19 dashboard that displays some insights from COVID-19 pandemic")
 
-@st.cache(allow_output_mutation=True,persist=True)
+#@st.cache(allow_output_mutation=True,persist=True)
 def load_data():
     data= pd.read_csv("https://www.kaggle.com/sudalairajkumar/covid19-in-india?select=covid_19_india.csv",sep="," , engine='python' , error_bad_lines=False)
     data.dropna()
