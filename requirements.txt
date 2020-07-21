@@ -6,3 +6,6 @@ seaborn
 plotly
 requests
 bs4
+lxml
+urllib
+BeautifulSoup

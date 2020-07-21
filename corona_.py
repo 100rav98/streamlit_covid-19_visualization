@@ -55,7 +55,7 @@ if not st.sidebar.checkbox("Hide Report", False,key='3'):
     import time
     url="https://en.wikipedia.org/wiki/Template:COVID-19_pandemic_data"
     page = urllib.request.urlopen(url)
-    soup = BeautifulSoup(page, "html5lib")
+    soup = BeautifulSoup(page, "lxml")
 
 
     Nama=[]
