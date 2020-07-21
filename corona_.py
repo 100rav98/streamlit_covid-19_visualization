@@ -7,25 +7,26 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-data_url="https://drive.google.com/file/d/10-kCx8F1lKGm8gfliWvim700cEn0re14/view?usp=sharing"
+
 st.title("COVID-19 Analytics Dashboard")
 st.sidebar.title("User Input Board")
 st.markdown("This application is a COVID-19 dashboard that displays some insights from COVID-19 pandemic")
-
-#@st.cache(allow_output_mutation=True,persist=True)
+data_url="covid_19_india.csv"
+@st.cache(allow_output_mutation=True,persist=True)
 def load_data():
-    data= pd.read_csv(data_url,sep="," , engine='python')
-    data=data.dropna()
+    data= pd.read_csv(data_url,sep=",")
+
+    data.dropna()
     #data['Date']=pd.to_datetime(data['Date'])
-    data=data.drop(data[data['State/UnionTerritory'].str.startswith('Cases')].index)
-    data=data.drop(data[data['State/UnionTerritory'].str.startswith('Daman')].index)
+    data.drop(data[data['State/UnionTerritory'].str.startswith('Cases')].index,inplace=True)
+    data.drop(data[data['State/UnionTerritory'].str.startswith('Daman')].index,inplace=True)
     chng=list(data[data['State/UnionTerritory']=='Dadar Nagar Haveli'].index)
     cnj=list(data[data['State/UnionTerritory']=='Telengana'].index)
     for i in cnj:
         data['State/UnionTerritory'].loc[i]='Telangana'
     for i in chng:
         data['State/UnionTerritory'].loc[i]='Dadra and Nagar Haveli and Daman and Diu'
-    data=data.rename(columns={'State/UnionTerritory':'States'})
+    data.rename(columns={'State/UnionTerritory':'States'},inplace=True)
     data['Active_Cases']= data['Confirmed'] - data['Cured']
     data['Death_to_Case_Ratio'] = np.round(data['Deaths']/data['Confirmed'],3)
     Foreign=list(data[data['ConfirmedForeignNational'] == '-'].index)
@@ -38,6 +39,7 @@ def load_data():
     return data
 
 df=load_data()
+
 locations=list(df['States'].drop_duplicates())
 # all_loc = ['Select an option','All States & UTs ']
 # all_loc.extend(locations)
