@@ -72,7 +72,7 @@ if not st.sidebar.checkbox("Hide Report", False,key='3'):
 
         st.markdown("### World covid-19 LIVE count")
         st.markdown("### %i Covid-19 Cases have been confirmed worldwide" %World_Cases)
-        st.markdown("### %i lives have been lost due to Covid-19 worldwide" %World_Deaths)
+        st.markdown("### %i casualties due to Covid-19 worldwide" %World_Deaths)
         st.markdown("### %i people have recovered from Covid-19 worldwide" %World_Recovered)
         st.markdown("### %i Covid-19 cases are currently active worldwide" %World_Active)
 
@@ -106,7 +106,7 @@ if not st.sidebar.checkbox("Hide Report", False,key='3'):
 
         st.markdown("### India covid-19 LIVE count")
         st.markdown("### %i Covid-19 Cases have been confirmed in India" %Cases_)
-        st.markdown("### %i lives have been lost due to Covid-19 in India" %Deaths_)
+        st.markdown("### %i casualties due to Covid-19 in India" %Deaths_)
         st.markdown("### %i people have recovered from Covid-19 in India" %Reco_)
         st.markdown("### %i Covid-19 cases are currently active in India" %Active_)
 
